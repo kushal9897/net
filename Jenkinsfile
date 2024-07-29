@@ -27,15 +27,16 @@ pipeline {
       }
       
     }
-     stage('SonarQube Analysis') {
-            environment {
-                scannerHome = tool 'SonarQubeScanner' // This should be the name of your SonarQube scanner installation in Jenkins
-            }
-            steps {
-                withSonarQubeEnv('SonarQubeServer') { // This should be the name of your SonarQube server configuration in Jenkins
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
-            }
+
+     stage("SonarQube Analysis"){
+        steps {
+           script{
+              withSonarQubeEnv(crentialsId: 'jenlins-sonarqube-token') {
+                 sh "mvn sonar:sonar"
+              }
+           }
         }
+     }
+     
    }
 }
