@@ -27,5 +27,13 @@ pipeline {
       }
       
     }
+    stage("SonarQube Analysis "){
+       steps{
+          script {
+             withSonarQubeEnv( credentialsId: 'jenlins-sonarqube-token')
+               sh "mvn sonar:sonar"
+          }
+       }
+    }
    }
 }
