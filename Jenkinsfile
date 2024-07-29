@@ -11,7 +11,7 @@ pipeline {
         cleanWs ()
       }
     }
-    stage("Checkout form SCM"){
+    stage("Checkout from SCM"){
       steps {
         git branch: 'main' , credentialsId: 'github' , url: 'https://github.com/kushal9897/net.git'
       }
@@ -31,7 +31,7 @@ pipeline {
      stage("SonarQube Analysis"){
         steps {
            script{
-              withSonarQubeEnv(crentialsId: 'jenlins-sonarqube-token') {
+              withSonarQubeEnv(credentialsId: 'jenlins-sonarqube-token') {
                  sh "mvn sonar:sonar"
               }
            }
