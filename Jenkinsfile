@@ -57,7 +57,8 @@ pipeline {
         steps{
            script{
               docker.withRegistry('',DOCKER_PASS){
-                 docker-image.push
+                 docker_image.push("${IMAGE_TAG}")
+                 docker_image.push('latest')
               }
            }
         }
