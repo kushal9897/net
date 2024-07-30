@@ -4,7 +4,14 @@ pipeline {
     jdk 'Java17' 
     maven 'Maven3'
   }
-
+   enviroment {
+      APP_NAME = "net-pipeline"
+      RELEASE = :1.00"
+      DOCKER_USER = "kushal9897"
+      DOCKER_PASS = 'dockerhub'
+      IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
+      IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+   }
   stages {
     stage("Cleanup Workspace"){
       steps {
@@ -42,6 +49,16 @@ pipeline {
         steps{
            script {
               waitForQualityGate abortPipeline: false, credentialsId: 'jenlins-sonarqube-token'
+           }
+        }
+     }
+
+     stage("Build & Push Docker Image"){
+        steps{
+           script{
+              docker.withRegistry('',DOCKER_PASS){
+                 docker-image.push
+              }
            }
         }
      }
