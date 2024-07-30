@@ -6,7 +6,7 @@ pipeline {
   }
    enviroment {
       APP_NAME = "net-pipeline"
-      RELEASE = :1.0.0"
+      RELEASE = "1.0.0"
       DOCKER_USER = "kushal9897"
       DOCKER_PASS = 'dockerhub'
       IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
