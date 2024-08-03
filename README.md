@@ -87,7 +87,7 @@ This project serves as a comprehensive example of how to leverage contemporary D
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/kushal9897/netgit
+   git clone https://github.com/kushal9897/net.git
    cd net
    ```
 
